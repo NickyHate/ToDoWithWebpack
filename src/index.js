@@ -1,21 +1,20 @@
 import './styles/style.scss';
 import Preloader from './components/preloader';
-import Task from './components/task';
-
+import Controller from './components/controller';
 const preloader = new Preloader();
-const task = new Task();
-const saveButton = document.querySelector('.save');
-const clearButton = document.querySelector('.clear');
+const controller = new Controller();
 
 document.body.onload = preloader.hidePreloader();
+document.body.onload = controller.setUlData();
+
+const saveButton = document.querySelector('#add');
 
 saveButton.addEventListener('click', function(){
-    task.createTask()
+    controller.checkValue()
 })
 
-clearButton.addEventListener('click', function(){
-    task.clearValue()
-})
+
+
 
 
 
