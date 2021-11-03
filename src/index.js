@@ -6,9 +6,9 @@ import ToDoItem from './components/model';
 
 const preloader = new Preloader();
 const view = new View()
-const model = new ToDoItem()
+const model = new ToDoItem({ title: 'string', completed: true, index: 1, order: 1, isDeleted: true})
 const controller = new Controller(view, model);
-console.log(JSON.stringify(model));
+
 document.body.onload = preloader.hidePreloader();
 document.body.onload = controller.init()
 

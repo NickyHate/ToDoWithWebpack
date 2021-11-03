@@ -12,17 +12,7 @@ export default class ToDoItem {
         this.order = listItem.order ? listItem.order : -1;
         this.isDeleted = listItem.isDeleted ? listItem.isDeleted : false;
     }
-    toLocal(){
-    
-    }
-    parseDataFromLocal(){
-        if (!this.listItem) {
-            return ['Empty']
-        } else {
-            return this.listItem
-        }
-    }
-
+}
     // getText(){        
     //     let text = document.querySelector('#text');
     //     return text.value
@@ -39,4 +29,3 @@ export default class ToDoItem {
     //         return 'Список пуст';
     //     }
     // }
-}
