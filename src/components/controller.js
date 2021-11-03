@@ -1,21 +1,18 @@
-import View from './view';
-import Model from './model';
-
-const view = new View();
-const model = new Model();
-
 export default class Controller {
-    setUlData(){
-        let ulElem = document.querySelector('.todos');
-        ulElem.innerHTML = model.getItemFromLocal();
+    constructor(view, model){
+        let addButton = document.querySelector('#add')
+        addButton.onclick = () => this.addItem() 
+        this.view = view
+        this.model = model       
     }
-    checkValue(){
-        if (model.getText() !== "") {
-            view.addItem(model.getText());
-            model.saveItemToLocal();
-            view.clearText();
-        } else {
-            alert('Поле не может быть пустым')
-        }
-    }      
+    init(){
+        console.log(this.view, 'view')
+        console.log(this.model, 'model')
+    }
+    addItem(){
+        this.view.createItem()      
+    }
+    deleteItem(e){
+        console.log(e)
+    }
 }
