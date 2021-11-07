@@ -1,8 +1,8 @@
-export default class ToDoItem {
+class ToDoItem {
     /*
         { title: string, completed: bool, index: number, order: number, isDeleted: bool}
     */
-    constructor(listItem) {
+    constructor(listItem) {        
         if (!listItem) {
             listItem = {};
         }
@@ -13,19 +13,15 @@ export default class ToDoItem {
         this.isDeleted = listItem.isDeleted ? listItem.isDeleted : false;
     }
 }
-    // getText(){        
-    //     let text = document.querySelector('#text');
-    //     return text.value
-    // }
-    // saveItemToLocal(){
-    //     let ulElem = document.querySelector('.todos');
-    //     let ulData = ulElem.innerHTML;
-    //     localStorage.setItem('todos', ulData)
-    // }
-    // getItemFromLocal(){
-    //     if (localStorage.getItem('todos')) {
-    //         return localStorage.getItem('todos');
-    //     } else {
-    //         return 'Список пуст';
-    //     }
-    // }
+class ToDoList {
+    constructor(list){
+        if (!list) {
+            list = {}
+        }
+        this.todos = []
+    }
+    toLocal(){
+        localStorage.setItem('todos', JSON.stringify(this.todos))
+    }
+}    
+export { ToDoItem, ToDoList }

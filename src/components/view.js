@@ -5,18 +5,25 @@ export default class View  {
     constructor(){
         
     }   
-    render(){
-    
+    render(todoItem){
+        console.log(todoItem)
     } 
     createToDoItem(todoItem){
         let ul = document.querySelector('.todos')
         let liElem = document.createElement('li')
         liElem.innerHTML = `<div class="items-container">
-                                <span class="todos_span" completed="true" index="1">${todoItem.title}</span>
+                                <span class="todos_span" completed=${todoItem.completed}>${todoItem.title}</span>
                                 <button class="todos_edit">Edit</button>
                                 <button class="todos_done">Done</button>
-                                <button class="todos_delete" onclick="${todoItem.action}">Delete</button>
+                                <button class="todos_delete">Delete</button>
                             </div>`        
         ul.appendChild(liElem);
-    }     
+    }
+    deleteItem(todoItem){
+        todoItem.isDeleted = !todoItem.isDeleted
+        return todoItem
+    } 
+    doneItem(target){
+    
+    }    
 } 
