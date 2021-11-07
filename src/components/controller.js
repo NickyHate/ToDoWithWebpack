@@ -3,7 +3,8 @@ export default class Controller {
         let addButton = document.querySelector('#add');
         addButton.onclick = () => this.addItem()
         this.view = view
-        this.model = model       
+        this.model = model   
+        document.addEventListener('click', this.action.bind(this))    
     }
     init(){
         
@@ -11,9 +12,16 @@ export default class Controller {
     addItem(){
         let title = document.querySelector('#text').value
         this.model.title = title
+        this.model.action = this.action
         this.view.createToDoItem(this.model)      
     }
-    deleteItem(e){
-        console.log(e)
+    action(e){
+        let target = e.target
+        if (target.classList.contains('todos_delete')){
+            this.deleteItem(target)
+        }
+    }
+    deleteItem(target){
+        target.closest('li').remove()
     }
 }
