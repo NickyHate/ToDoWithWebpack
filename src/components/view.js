@@ -6,20 +6,28 @@ export default class View  {
         
     }   
     render(todoList){
-        todoList.map(function(el){
-            let ul = document.querySelector('.todos')
-            let liElem = document.createElement('li')
-            liElem.innerHTML = `<div class="items-container">
-                                    <span class="todos_span" completed=${el.completed}>${el.title}</span>
-                                    <button class="todos_edit">Edit</button>
-                                    <button class="todos_done">Done</button>
-                                    <button class="todos_delete">Delete</button>
-                                </div>`        
-            ul.appendChild(liElem);
-        })
+        let ul = document.querySelector('.todos')
+        if (todoList.length) {
+            ul.innerHTML = ''
+            todoList.map(function(el){                
+                let liElem = document.createElement('li')
+                liElem.innerHTML = `<div class="items-container">
+                                        <span class="todos_span" completed=${el.completed}>${el.title}</span>
+                                        <button class="todos_edit">Edit</button>
+                                        <button class="todos_done">Done</button>
+                                        <button class="todos_delete">Delete</button>
+                                    </div>`        
+                ul.appendChild(liElem);
+            })
+        } else {
+            ul.innerHTML = 'List is empty'
+        }
     } 
     createToDoItem(todoItem){
         let ul = document.querySelector('.todos')
+        if (ul.innerHTML === 'List is empty') {
+            ul.innerHTML = ''
+        }
         let liElem = document.createElement('li')
         liElem.innerHTML = `<div class="items-container">
                                 <span class="todos_span" completed=${todoItem.completed}>${todoItem.title}</span>
@@ -29,10 +37,6 @@ export default class View  {
                             </div>`        
         ul.appendChild(liElem);
     }
-    deleteItem(todoItem){
-        todoItem.isDeleted = !todoItem.isDeleted
-        return todoItem
-    } 
     doneItem(target){
     
     }    

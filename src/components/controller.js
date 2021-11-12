@@ -23,8 +23,7 @@ export default class Controller {
             this.view.createToDoItem(this.model)
         }
         if (target.classList.contains('todos_delete')){
-            console.log(target)
-            this.view.render(this.model)
+            // this.view.render(this.list.getDataFromLocal())
         }
         if (target.classList.contains('todos_done')){
             this.view.doneItem(target)
