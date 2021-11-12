@@ -5,8 +5,18 @@ export default class View  {
     constructor(){
         
     }   
-    render(todoItem){
-        
+    render(todoList){
+        todoList.map(function(el){
+            let ul = document.querySelector('.todos')
+            let liElem = document.createElement('li')
+            liElem.innerHTML = `<div class="items-container">
+                                    <span class="todos_span" completed=${el.completed}>${el.title}</span>
+                                    <button class="todos_edit">Edit</button>
+                                    <button class="todos_done">Done</button>
+                                    <button class="todos_delete">Delete</button>
+                                </div>`        
+            ul.appendChild(liElem);
+        })
     } 
     createToDoItem(todoItem){
         let ul = document.querySelector('.todos')

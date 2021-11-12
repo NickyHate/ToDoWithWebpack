@@ -6,7 +6,7 @@ export default class Controller {
         document.addEventListener('click', this.action.bind(this))    
     }
     init(){
-        this.view.createToDoItem()
+        this.view.render(this.list.getDataFromLocal())
     }
     addItem(){
         let title = document.querySelector('#text').value
