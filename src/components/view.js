@@ -6,7 +6,7 @@ export default class View  {
         
     }   
     render(todoItem){
-        console.log(todoItem)
+        
     } 
     createToDoItem(todoItem){
         let ul = document.querySelector('.todos')

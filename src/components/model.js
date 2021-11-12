@@ -8,7 +8,7 @@ class ToDoItem {
         }
         this.title = listItem.title ? listItem.title : '';
         this.completed = listItem.completed ? listItem.completed : false;
-        this.index = listItem.index ? listItem.index : -1;
+        this.index = listItem.index ? listItem.index : 0;
         this.order = listItem.order ? listItem.order : -1;
         this.isDeleted = listItem.isDeleted ? listItem.isDeleted : false;
     }
@@ -18,10 +18,13 @@ class ToDoList {
         if (!list) {
             list = {}
         }
-        this.todos = []
+        this.todos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : []
     }
     toLocal(){
         localStorage.setItem('todos', JSON.stringify(this.todos))
+    }
+    getDataFromLocal(){
+        return this.todos
     }
 }    
 export { ToDoItem, ToDoList }
