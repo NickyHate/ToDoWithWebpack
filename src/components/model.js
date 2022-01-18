@@ -2,7 +2,7 @@ class ToDoItem {
     /*
         { title: string, completed: bool, index: number, order: number, isDeleted: bool}
     */
-    constructor(listItem) {        
+    constructor(listItem) {   
         if (!listItem) {
             listItem = {};
         }
@@ -18,13 +18,41 @@ class ToDoList {
         if (!list) {
             list = {}
         }
-        this.todos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : []
+        this.todos = list.todos ? list.todos : [];
+        this.counter = 0;
     }
-    toLocal(){
+    add(obj){
+        obj.index = this.counter++;
+        let newToDoItem = new ToDoItem(obj);
+        this.todos.push(newToDoItem);
         localStorage.setItem('todos', JSON.stringify(this.todos))
+        return newToDoItem
+    }
+    delete(idx){
+        let elemIdx = null;
+        this.todos.find(function(el, index){
+            if (el.index == idx) {  
+                el.isDeleted = true;              
+                elemIdx = index;
+            }
+        });
+        this.todos.splice(elemIdx, 1);
+        localStorage.setItem('todos', JSON.stringify(this.todos))
+        return this.todos
+    }
+    done(idx){
+        let elemIdx = null;
+        this.todos.find(function(el, index){
+            if (el.index == idx) {
+                el.completed = true;
+                elemIdx = index;
+            }
+        });
+        localStorage.setItem('todos', JSON.stringify(this.todos))
+        return this.todos
     }
     getDataFromLocal(){
-        return this.todos
+        return JSON.parse(localStorage.getItem('todos'));
     }
 }    
 export { ToDoItem, ToDoList }

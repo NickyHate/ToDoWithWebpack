@@ -1,32 +1,29 @@
-export default class Controller {
-    constructor(view, model, list){
-        this.view = view
-        this.model = model   
-        this.list = list
-        document.addEventListener('click', this.action.bind(this))    
+// Сюда добавляем модель, при добавлении элемента вызываем новый класс TodoItem
+
+export default class Controller {    
+    constructor(localList){ 
+        this.list = localList
     }
-    init(){
-        this.view.render(this.list.getDataFromLocal())
+    addItem(obj){
+        return this.list.add(obj);         
     }
-    addItem(){
-        let title = document.querySelector('#text').value
-        this.model.title = title
-        this.model.action = this.action
-        this.model.index = this.list.todos.length
-        this.list.todos.push(this.model)
-        this.list.toLocal()              
+    getTodos(){
+        return this.list.getDataFromLocal()
     }
     action(e){
-        let target = e.target
-        if (target.classList.contains('add')){
-            this.addItem()
-            this.view.createToDoItem(this.model)
+        let target = e.target;
+        if (target.classList.contains('todos_delete')) {
+            console.log(e)            
         }
-        if (target.classList.contains('todos_delete')){
-            // this.view.render(this.list.getDataFromLocal())
-        }
-        if (target.classList.contains('todos_done')){
-            this.view.doneItem(target)
-        }
-    }    
+    }
+    deleteItem(e){
+        let idx = e.target.parentElement.attributes.index.value;
+        return this.list.delete(idx);
+        // console.log( this.list.todos, 'Item delete Controller')
+    }
+    doneItem(e){
+        let idx = e.target.parentElement.attributes.index.value;
+        return this.list.done(idx);
+        // console.log( this.list.todos, 'Item delete Controller')
+    }
 }
