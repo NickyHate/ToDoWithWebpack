@@ -9,7 +9,7 @@ class ToDoItem {
         this.title = listItem.title ? listItem.title : '';
         this.completed = listItem.completed ? listItem.completed : false;
         this.index = listItem.index ? listItem.index : 0;
-        this.order = listItem.order ? listItem.order : -1;
+        this.order = listItem.order ? listItem.order : 1;
         this.isDeleted = listItem.isDeleted ? listItem.isDeleted : false;
     }
 }
@@ -23,6 +23,7 @@ class ToDoList {
     }
     add(obj){
         obj.index = this.counter++;
+        obj.order = this.order++;
         let newToDoItem = new ToDoItem(obj);
         this.todos.push(newToDoItem);
         localStorage.setItem('todos', JSON.stringify(this.todos))

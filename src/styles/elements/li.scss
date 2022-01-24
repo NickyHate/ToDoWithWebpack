@@ -1,30 +1,31 @@
 .items-container {
     display: inline-flex;
     width: 100%;
+    height: 50px;
     margin: 10px 0;
     padding-left: 10px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border: 4px solid black;
+    border: 2px solid #363741;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #1a1b24;
     font-size: 16px;
+    color: white;
+}
+
+.checkbox {
+    flex: 0.4;
 }
 
 .todos_span {
-    flex: 5;
+    flex: 4.6;
 }
 
-.todos_edit, .todos_delete, .todos_done {
-    flex: 1;
-    width: 70px;
-    height: 35px;
-    padding: 5px 8px;
-    margin: 0 5px;
-    border: 2px solid black;
+.todos_delete_container, .todos_edit_container {
+    padding: 5px;
 }
-
 .doneItem {
-    background: green;
+    text-decoration: line-through;
+	text-decoration-color: white;
 }
