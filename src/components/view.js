@@ -20,17 +20,18 @@ export default class View  {
         view.render(todos);
     }
     render(todoList){
+        console.log(todoList, 'todoList')
         let ul = document.querySelector('.todos')
         if (todoList) {
             ul.innerHTML = ''
-            todoList.map(function(el, idx){ 
-                view.createToDoItem(el, idx);
+            todoList.map(function(el){ 
+                view.createToDoItem(el);
             })
         } else {
             ul.innerHTML = 'List is empty'
         }
     }     
-    createToDoItem(todoItem, idx){
+    createToDoItem(todoItem){
         let ul = document.querySelector('.todos')
         if (ul.innerHTML === 'List is empty') {
             ul.innerHTML = ''
