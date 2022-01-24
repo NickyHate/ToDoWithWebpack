@@ -17,7 +17,6 @@ export default class Controller {
         // console.log( this.list.todos, 'Item delete Controller')
     }
     doneItem(e){
-        console.log(e)
         let idx = e.target.parentElement.attributes.index.value;        
         return this.list.done(idx);
         // console.log( this.list.todos, 'Item delete Controller')

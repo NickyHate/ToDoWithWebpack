@@ -36,7 +36,7 @@ export default class View  {
             ul.innerHTML = ''
         }
         let liElem = document.createElement('li');
-        liElem.innerHTML = `<div class="items-container" index=${todoItem.index} completed=${todoItem.completed} isDeleted=${todoItem.isDeleted}>
+        liElem.innerHTML = `<div class="items-container ${todoItem.completed ? "completed" : ""}" index=${todoItem.index} completed=${todoItem.completed} isDeleted=${todoItem.isDeleted}>
                                 <input type="checkbox" class="checkbox" ${todoItem.completed ? "checked" : ""}>
                                 <span class="todos_span ${todoItem.completed ? "doneItem" : ""}">${todoItem.title}</span>
                                 <div class="todos_edit_container">                                    
@@ -55,12 +55,12 @@ export default class View  {
         document.querySelector('#text').value = '';       
     }
     action(e){
-        let target = e.target;
+        let target = e.target;        
         if (target.parentElement.classList.contains('todos_delete')){  
             let todos = controller.deleteItem(e)          
             view.render(todos);            
         }
-        if (target.classList.contains('checkbox')){       
+        if (target.classList.contains('checkbox')){   
             let todos = controller.doneItem(e);       
             view.render(todos);            
         }          

@@ -11,6 +11,7 @@ class ToDoItem {
         this.index = listItem.index ? listItem.index : 0;
         this.order = listItem.order ? listItem.order : 1;
         this.isDeleted = listItem.isDeleted ? listItem.isDeleted : false;
+        this.checked = listItem.checked ? listItem.checked : false;
     }
 }
 class ToDoList {
@@ -45,7 +46,8 @@ class ToDoList {
         let elemIdx = null;
         this.todos.find(function(el, index){
             if (el.index == idx) {
-                el.completed = true;
+                el.completed = !el.completed;
+                el.checked = !el.checked;
                 elemIdx = index;
             }
         });
